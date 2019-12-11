@@ -18,10 +18,19 @@ function findById(id) {
 		.first();
 }
 
-function findSteps(id) {
-	return db('steps')
-		.where({ id })
-		.first();
+function findSteps(scheme_id) {
+    // select sc.scheme_name 
+    // , st.step_number
+    // , st.instructions
+    // from schemes as sc
+    // join steps as st
+    //     on sc.id = st.scheme_id;
+
+    return db('schemes as sc')
+    .select("sc.scheme_name", "st.step_number" , "st.instructions")
+    .join('steps as st', 'sc.id', 'st.scheme_id')
+    .orderBy('st.step_number')
+    .where("scheme_id", scheme_id);    
 }
 
 function add(scheme) {
