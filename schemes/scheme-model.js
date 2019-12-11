@@ -19,13 +19,6 @@ function findById(id) {
 }
 
 function findSteps(scheme_id) {
-    // select sc.scheme_name 
-    // , st.step_number
-    // , st.instructions
-    // from schemes as sc
-    // join steps as st
-    //     on sc.id = st.scheme_id;
-
     return db('schemes as sc')
     .select("sc.scheme_name", "st.step_number" , "st.instructions")
     .join('steps as st', 'sc.id', 'st.scheme_id')
@@ -42,9 +35,9 @@ function add(scheme) {
 }
 
 function addStep(id) {
+    
 	return db('schemes')
-		.findById(id)
-		.then(foundId => {});
+		;
 }
 
 function update(changes, id) {

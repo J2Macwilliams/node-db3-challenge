@@ -39,3 +39,22 @@ join customer as c
     on o.customerId = c.id 
 join employee as e 
     on o.employeeId = e.id;
+
+
+-- Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 9 records.
+
+select distinct c.categoryName
+,  p.categoryID as count
+from categories as c
+join products as p
+on c.categoryid = p.categoryId
+where c.categoryid = p.categoryId;
+
+
+-- Display OrderID and a column called ItemCount that shows the total number of products placed on the order. Shows 196 records.
+
+select distinct o.orderID
+, sum(p.categoryId = o.productId) as ItemCount
+from orderDetails as o 
+join products as p 
+on o.productId = p.productId;
